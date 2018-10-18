@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# Data Set\n## Description\n## 127 SNe Ia from PAIRITEL, CfA3, Carnegie Supernova Project and the literature.\n## CSP photometric data:\n",
+    "created" : 1539902251913.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2102014132",
+    "id" : "A88EAB7A",
+    "lastKnownWriteTime" : 1539901660,
+    "last_content_update" : 1539901660,
+    "path" : "~/Dropbox/project/STAT605/Code/DataCleaning.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
