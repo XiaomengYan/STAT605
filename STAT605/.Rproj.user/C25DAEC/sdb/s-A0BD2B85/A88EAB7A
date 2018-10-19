@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "# Data Set\n## Description\n## 127 SNe Ia from PAIRITEL, CfA3, Carnegie Supernova Project and the literature.\n## CSP photometric data:\n",
+    "contents" : "# Data Set\n## Description\n## 127 SNe Ia from PAIRITEL, CfA3, Carnegie Supernova Project and the literature.\n## CSP photometric data:\n\n######## customer set ###########\nrawpath <- \"../Data/CSP_Kevin/\"\noutpath <<- \"../Data/CSP_BVRI/\"\n#################################\n\n\n###################################################################\n##Procedure to deal with third release dataset\nrawfile <- list.files(rawpath)\nSNeDF <- data.frame(matrix(0,ncol = 2,nrow = length(rawfile)))\ncolnames(SNeDF)<- c(\"SN\",\"z\")\noptions(digits=10)\nfor(SNIndex in 1:length(rawfile)){\n  print(SNIndex)\n  # Get the supernova file name\n  SNeFile <- paste0(rawpath,rawfile[SNIndex])\n  # Read the raw data (without removing \"#\")\n  SNe_Lines <- readLines(SNeFile)\n  SNeName <- unlist(strsplit(SNe_Lines[1],split = \" \"))[1]\n  Redshift <- unlist(strsplit(SNe_Lines[1],split = \" \"))[2]\n  SNeDF[SNIndex,] <- c(SNeName,Redshift)\n  write.table(SNe_Lines[1],file = paste0(outpath,SNeName,\"_CSP_main.txt\"),quote = FALSE,row.names = FALSE,col.names = FALSE)\n  Locfilter <- grep(\"filter\",SNe_Lines)\n  EntireFilterName <- c(\"filter B\",\"filter V0\",\"filter V1\",\"filter V\",\"filter r\",\"filter i\")\n  for(j in EntireFilterName){\n    ExactFilterLoc <- which(SNe_Lines[Locfilter]== j)\n    if(length(ExactFilterLoc) == 0)\n    {\n      next()\n    }\n    else if(ExactFilterLoc == length(Locfilter))\n    {\n      ExactFilterReponse <- SNe_Lines[Locfilter[ExactFilterLoc]:length(SNe_Lines)]\n    }\n    else{\n      ExactFilterReponse <- SNe_Lines[Locfilter[ExactFilterLoc]:(Locfilter[ExactFilterLoc+1]-1)]\n    }\n    write.table(ExactFilterReponse,file = paste0(outpath,SNeName,\"_CSP_main.txt\"),row.names = FALSE,quote = FALSE,col.names = FALSE,append = TRUE)\n  }\n}\n\nwrite.csv(\"../Data/CSP_Kevin_Summary.csv\",x = SNeDF,row.names = FALSE)\n",
     "created" : 1539902251913.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2102014132",
+    "hash" : "1883998616",
     "id" : "A88EAB7A",
-    "lastKnownWriteTime" : 1539901660,
-    "last_content_update" : 1539901660,
+    "lastKnownWriteTime" : 1539916426,
+    "last_content_update" : 1539916426151,
     "path" : "~/Dropbox/project/STAT605/Code/DataCleaning.R",
     "project_path" : null,
     "properties" : {
